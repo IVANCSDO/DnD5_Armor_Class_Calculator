@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular CA</title>
+
+    <script type="text/javaScript">
+
+        function calcular() {
+            
+            let dex=parseInt(document.getElementById("dex").value);
+            let dexMax2=parseInt(document.getElementById("dex").value); //esta variable es como la destreza pero aplicada únicamente a algunos casos (más en línea 19)
+            let con=parseInt(document.getElementById("con").value);
+            let wis=parseInt(document.getElementById("wis").value);
+            let int=parseInt(document.getElementById("int").value);
+
+
+            if (dexMax2>2){  //esto es porque algunos tipos de armadura suman un máximo de "2" en el valor de destreza, por eso convierto todo valor superior a 2 en 2
+                dexMax2=2
+            }
+            
+            //bonuses
+
+            let bonusArmaduraFinal=parseInt(document.getElementById("bonusM").value);
+            
+            if (document.getElementById("shieldO").checked==true) {
+                shieldOBonusFinal=(2)
+            }else{
+                shieldOBonusFinal=(0)
+            }
+
+            if (document.getElementById("shieldFaith").checked==true) {
+                shieldFaithFinal=(2)
+            }else{
+                shieldFaithFinal=(0)
+            }
+            
+            if (document.getElementById("shieldC").checked==true) {
+                shieldCBonusFinal=(5)
+            }else{
+                shieldCBonusFinal=(0)
+            }
+            
+            if (document.getElementById("ringPro").checked==true) {
+                ringProFinal=(1)
+            }else{
+                ringProFinal=(0)
+            }
+
+            if (document.getElementById("bracers").checked==true) {
+                bracersFinal=(2)
+            }else{
+                bracersFinal=(0)
+            }
+
+            if (document.getElementById("bladesong").checked==true) {
+                bladesongFinal=(int)
+            }else{
+                bladesongFinal=(0)
+            }
+
+            if (document.getElementById("haste").checked==true) {
+                hasteFinal=(2)
+            }else{
+                hasteFinal=(0)
+            }
+
+            if (document.getElementById("defense").checked==true) {
+                defenseFinal=(1)
+            }else{
+                defenseFinal=(0)
+            }
+
+            if (document.getElementById("dualW").checked==true) {
+                dualFinal=(1)
+            }else{
+                dualFinal=(0)
+            }
+
+            let bonusExtra1Final=parseInt(document.getElementById("bonusExtra1").value);
+            let bonusExtra2Final=parseInt(document.getElementById("bonusExtra2").value);
+            let bonusExtra3Final=parseInt(document.getElementById("bonusExtra3").value);
+
+
+            //variable que aplica todos los bonos
+            let bonuses=(bonusArmaduraFinal+shieldOBonusFinal+shieldFaithFinal+shieldCBonusFinal+ringProFinal+bracersFinal+bladesongFinal+hasteFinal+defenseFinal+dualFinal+bonusExtra1Final+bonusExtra2Final+bonusExtra3Final);
+
+
+
+            //bases
+            document.getElementById("noArmor").value=(10+dex+bonuses);
+            document.getElementById("barUnar").value=(10+dex+con+bonuses);
+            document.getElementById("monUnar").value=(10+dex+wis+bonuses);
+            document.getElementById("mageArm").value=(13+dex+bonuses);
+            document.getElementById("dracRes").value=(13+dex+bonuses);
+
+            //armaduras
+            document.getElementById("11+dex").value=(11+dex+bonuses);
+            document.getElementById("12+dex").value=(12+dex+bonuses);
+            document.getElementById("12+dexMax2").value=(12+dexMax2+bonuses);
+            document.getElementById("13+dexMax2").value=(13+dexMax2+bonuses);
+            document.getElementById("14+dexMax2").value=(14+dexMax2+bonuses);
+            document.getElementById("15+dexMax2").value=(15+dexMax2+bonuses);
+            document.getElementById("14").value=(14+bonuses);
+            document.getElementById("16").value=(16+bonuses);
+            document.getElementById("17").value=(17+bonuses);
+            document.getElementById("18").value=(18+bonuses);
+
+        }
+        
+
+    </script>
+
+
+
+</head>
+<body style="font-family: sans-serif" background="media/fondo2logo2.jpg">
+    
+    
+    <h1><b>ARMOR CLASS CALCULATOR</b></h1>
+    <p><b>Stats:</b> 
+        Dexterity modifier<input 
+            type="number" 
+            id="dex" 
+            style="width: 2em"
+            value="0"> 
+        
+        Constitution modifier<input 
+            type="number" 
+            id="con" 
+            style="width: 2em"
+            value="0"> 
+        
+        Wisdom modifier<input 
+            type="number" 
+            id="wis" 
+            style="width: 2em"
+            value="0">
+
+        Inteligence modifier<input 
+            type="number" 
+            id="int" 
+            style="width: 2em"
+            value="0">
+    </p>
+
+    <h4><b><u>Bonuses</u></b></h4>
+    <p>
+        
+        <input type="number" id="bonusM" value="0" style="width: 2em">Magical armor/shield bonuses
+
+        <input type="checkbox" id="shieldO">
+        <label for="shieldO">Shield (Objet)</label>
+
+        <input type="checkbox" id="shieldC">
+        <label for="shieldC">Shield (Spell)</label>
+
+        <input type="checkbox" id="shieldFaith">
+        <label for="shieldFaith">Shield of Faith</label>
+
+        <input type="checkbox" id="haste">
+        <label for="haste">Haste</label>
+    
+        <input type="checkbox" id="ringPro">
+        <label for="ringPro">Ring of protecction</label>
+
+        <input type="checkbox" id="bracers">
+        <label for="bracers">Bracers of defense</label>
+
+        <br>
+        <br>
+
+        <input type="checkbox" id="bladesong">
+        <label for="bladesong">Bladesong</label>
+
+        <input type="checkbox" id="defense">
+        <label for="defense">Fighting style: Defense</label>
+        
+        <input type="checkbox" id="dualW">
+        <label for="dualW">Dual wielder</label>
+        
+        <input type="number" id="bonusExtra1" value="0" style="width: 2em"><input type="text" id="extra1" value="Other bonus 1">
+        <input type="number" id="bonusExtra2" value="0" style="width: 2em"><input type="text" id="extra2" value="Other bonus 2">
+        <input type="number" id="bonusExtra3" value="0" style="width: 2em"><input type="text" id="extra3" value="Other bonus 3">
+    </p>
+
+    <input type="button" id="botonCalcular" value="Calculate your A.C" onclick="calcular();">
+
+    <br>
+
+    <h4><u>Base AC</u></h4>
+    <p><b>No armor:</b> Base AC = 10 + Dexterity modifier <input 
+            type="text" 
+            id="noArmor" 
+            value="N.A" 
+            style="width: 2em"
+            readonly>
+    </p>
+
+    <p><b>Barbarian unarmored defense:</b> Base AC = 10 + Dexterity modifier + Constitution modifier <input 
+            type="text" 
+            id="barUnar" 
+            value="N.A" 
+            style="width: 2em"
+            readonly>
+    </p>
+
+    <p><b>Monk unarmored defense:</b> Base AC = 10 + Dexterity modifier + Wisdom modifier <input 
+        type="text" 
+        id="monUnar" 
+        value="N.A"
+        style="width: 2em" 
+        readonly>
+    </p>
+
+    <p><b>Mage armor:</b> Base AC = 13 + Dexterity modifier <input 
+        type="text" 
+        id="mageArm" 
+        value="N.A" 
+        style="width: 2em"
+        readonly>
+    </p>
+
+    <p><b>Sorcerer Draconic Resilience:</b> Base AC = 13 + Dexterity modifier <input 
+        type="text" 
+        id="dracRes" 
+        value="N.A" 
+        style="width: 2em"
+        readonly>
+    </p>
+
+    <br>
+
+    <h4><u>Armor</u></h4>
+
+    <p><b>Padded armor/Leather armor</b> Base AC = 11 + Dex modifier <input 
+        type="text" 
+        id="11+dex" 
+        value="N.A" 
+        style="width: 2em"
+        readonly>
+    </p>
+
+    <p><b>Studded leather armor</b> Base AC = 12 + Dex modifier <input 
+        type="text" 
+        id="12+dex" 
+        value="N.A" 
+        style="width: 2em"
+        readonly>
+    </p>
+
+    <p><b>Hide armor</b> Base AC = 12 + Dex modifier (max 2) <input 
+        type="text" 
+        id="12+dexMax2" 
+        value="N.A" 
+        style="width: 2em"
+        readonly>
+    </p>
+
+    <p><b>Chain Shirt</b> Base AC = 13 + Dex modifier (max 2) <input 
+        type="text" 
+        id="13+dexMax2" 
+        value="N.A" 
+        style="width: 2em"
+        readonly>
+    </p>
+
+    <p><b>Scale mail/Breastplate</b> Base AC = 14 + Dex modifier (max 2) <input 
+        type="text" 
+        id="14+dexMax2" 
+        value="N.A" 
+        style="width: 2em"
+        readonly>
+    </p>
+
+    <p><b>Half plate armor</b> Base AC = 15 + Dex modifier (max 2) <input 
+        type="text" 
+        id="15+dexMax2" 
+        value="N.A" 
+        style="width: 2em"
+        readonly>
+    </p>
+
+    <p><b>Ring mail armor</b> Base AC = 14 <input 
+        type="text" 
+        id="14" 
+        value="N.A" 
+        style="width: 2em"
+        readonly>
+    </p>
+
+    <p><b>Chain mail armor</b> Base AC = 16 <input 
+        type="text" 
+        id="16" 
+        value="N.A" 
+        style="width: 2em"
+        readonly>
+    </p>
+
+    <p><b>Splint armor</b> Base AC = 17 <input 
+        type="text" 
+        id="17" 
+        value="N.A" 
+        style="width: 2em"
+        readonly>
+    </p>
+
+    <p><b>Plate armor</b> Base AC = 18 <input 
+        type="text" 
+        id="18" 
+        value="N.A" 
+        style="width: 2em"
+        readonly>
+    </p>
+
+
+
+</body>
+</html>
